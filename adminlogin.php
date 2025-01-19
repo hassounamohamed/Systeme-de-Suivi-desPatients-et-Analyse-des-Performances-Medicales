@@ -82,17 +82,12 @@ include("include/header.php");
             <!-- Login Form -->
             <form action="" method="post" class="my-2">
 
-                    <div class="alert alert-danger">
-                        <?php
-                            if(isset($error['admin'])){
-                                $show = $error['admin'];
-
-                                
-                            }else{
-                                $show = "";
-                            }
-                            echo $show;
-                        ?>
+                    <div >
+                    <?php
+                    if (isset($error['admin'])) {
+                        echo "<h4 class='alert alert-danger'>" . $error['admin'] . "</h4>";
+                    }
+                    ?>
 
 
                     </div>
