@@ -26,6 +26,7 @@
                 <div class="list-group text-center">
                     <a href="index.php" class="list-group-item list-group-item-action">Dashboard</a>
                     <a href="admin.php" class="list-group-item list-group-item-action">Administrators</a>
+                    <a href="profile.php" class="list-group-item list-group-item-action">Profile</a>
                     <a href="doctors.php" class="list-group-item list-group-item-action">Doctors</a>
                     <a href="patients.php" class="list-group-item list-group-item-action">Patients</a>
                 </div>
