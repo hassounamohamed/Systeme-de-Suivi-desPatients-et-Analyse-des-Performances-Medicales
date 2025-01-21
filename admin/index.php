@@ -44,7 +44,7 @@
                                         <h5 class="text-white">Admin</h5>
                                     </div>
                                     <div class="col-md-4">
-                                        <a href="#">
+                                        <a href="admin.php">
                                             <i class="fa-solid fa-users-gear fa-3x my-4" style="color:white;"></i>
                                         </a>
                                     </div>

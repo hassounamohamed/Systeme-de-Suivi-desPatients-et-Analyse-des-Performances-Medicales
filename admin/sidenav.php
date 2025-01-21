@@ -25,7 +25,7 @@
 <div class="col-md-2 sidenav p-0">
                 <div class="list-group text-center">
                     <a href="index.php" class="list-group-item list-group-item-action">Dashboard</a>
-                    <a href="administrators.php" class="list-group-item list-group-item-action">Administrators</a>
+                    <a href="admin.php" class="list-group-item list-group-item-action">Administrators</a>
                     <a href="doctors.php" class="list-group-item list-group-item-action">Doctors</a>
                     <a href="patients.php" class="list-group-item list-group-item-action">Patients</a>
                 </div>
