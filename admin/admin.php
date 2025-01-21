@@ -8,7 +8,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <?php
@@ -18,7 +19,7 @@ session_start();
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2">
+            <div class="col-md-2 p-0">
                 <?php 
                     include("sidenav.php");
                     include("../include/connection.php");
@@ -60,10 +61,7 @@ session_start();
                                         <td>$id</td>
                                         <td>$username</td>
                                         <td>
-                                            
                                             <a href='admin.php?id=$id'><button id='$id' class='btn btn-danger remove'>Remove</button></a>
-
-
                                         </td>
                                       </tr>"; 
                                 }
@@ -75,20 +73,23 @@ session_start();
                                 echo $output;
 
                                 
+
                                 if(isset($_GET['id'])) {
                                     $id = $_GET['id'];
 
                                     $query = "DELETE FROM admin WHERE id='$id'";
                                     mysqli_query($connect,$query);
                                 
+
                                     }
                                 
+
                             ?>
 
                         </div>
                         <div class="col-md-6">
                             <?php
-                                
+                                 
                                 $error = array();
 
                                 if(isset($_POST['add'])){
@@ -111,6 +112,7 @@ session_start();
                                             move_uploaded_file($_FILES['img']['tmp_name'], "img/$image");
                                         } else {
                                             
+
                                         }
                                     }
                                 }
@@ -153,3 +155,4 @@ session_start();
 
 </body>
 </html>
+
