@@ -1,78 +1,57 @@
-<?php
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor's Dashboard</title>
+    <title>MmS Home Page</title>
+    <!-- Add Bootstrap CSS link here for styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <?php
-        include("../include/header.php");
+    <?php 
+        include("include/header.php");
     ?>
 
-    <div class="container-fluid">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-2" style="margin-left:-30px;">
-                    <?php
-                        include("sidenav.php");
-                    ?>
+    <!-- Added margin top with correct inline style -->
+    <div style="margin-top: 50px;"></div>
+
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <!-- First card -->
+            <div class="col-md-3 mx-2 shadow p-3">
+                <img src="img/info.jpg" alt="Information" class="img-fluid rounded" style="width: 100%; height: 190px;">
+                <h5 class="text-center">Click on the button for more information</h5>
+                <div class="text-center">
+                    <a href="#">
+                        <button class="btn btn-success">More Information</button>
+                    </a>
                 </div>
-                <div class="col-md-10">
-                <div class="container-fluid">
-                    <h5>Doctor's Dashboard</h5>
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-md-3 my-2 bg-info mx-2" style="height: 150px;">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <h5 class="text-white my-4">My Profile</h5>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href="profile.php"><i class="fa fa-user-circle fa-3x my-4" style="color:white;"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 my-2 bg-warning mx-2" style="height: 150px;">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <h5 class="text-white my-2" style="font-size:30px;">0</h5>
-                                            <h5 class="text-white my-4">Total</h5>
-                                            <h5 class="text-white my-4">Patients</h5>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href="#"><i class="fa fa-procedures fa-3x my-4" style="color:white;"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 my-2 bg-success mx-2" style="height: 150px;">
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <h5 class="text-white my-2" style="font-size:30px;">0</h5>
-                                            <h5 class="text-white my-4">Total</h5>
-                                            <h5 class="text-white my-4">Appointments</h5>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <a href="#"><i class="fa fa-calendar fa-3x my-4" style="color:white;"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+
+            <!-- Second card -->
+            <div class="col-md-3 mx-2 shadow p-3">
+                <img src="img/patient.jpg" alt="Patient" class="img-fluid rounded" style="width: 100%; height: 190px;">
+                <h5 class="text-center">Create Account so that we can take good care of you.</h5>
+                <div class="text-center">
+                    <a href="account.php">
+                        <button class="btn btn-success">Create Account!!!</button>
+                    </a>
                 </div>
+            </div>
+
+            <!-- Third card -->
+            <div class="col-md-3 mx-2 shadow p-3">
+                <img src="img/doctor.jpg" alt="Doctor" class="img-fluid rounded" style="width: 100%; height: 190px;">
+                <h5 class="text-center">We are employing for doctors</h5>
+                <div class="text-center">
+                    <a href="#">
+                        <button class="btn btn-success">Apply Now!!</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+
+    
 </body>
 </html>

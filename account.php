@@ -1,54 +1,51 @@
 <?php
-include("include/connection.php");
-if (isset($_POST['apply'])) {
-    $firstname = $_POST['fname'];
-    $surname = $_POST['sname'];
-    $uname = $_POST['uname']; 
-    $email = $_POST['email'];
-    $gender = $_POST['gender'];
-    $phone = $_POST['phone'];
-    $password = $_POST['pass'];
-    $confirm_password = $_POST['con_pass'];
+    include("include/connection.php");
 
-    $error = array();
+    if(isset($_POST['create'])){
+        $fname = $_POST['fname'];
+        $sname = $_POST['sname'];
+        $uname = $_POST['uname'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $gender = $_POST['gender'];
+        $password = $_POST['pass'];
+        $con_pass = $_POST['con_pass'];
+        
+        $error = array();
 
-    if (empty($firstname)) {
-        $error['apply'] = "Enter Firstname";
-    } else if (empty($surname)) {
-        $error['apply'] = "Enter Surname";
-    } else if (empty($uname)) { // Validate username
-        $error['apply'] = "Enter Username";
-    } else if (empty($email)) {
-        $error['apply'] = "Enter Email";
-    } else if ($gender == "") {
-        $error['apply'] = "Select your Gender";
-    } else if (empty($phone)) {
-        $error['apply'] = "Enter Phone";
-    } else if (empty($password)) {
-        $error['apply'] = "Enter Password";
-    } else if ($confirm_password != $password) {
-        $error['apply'] = "Both Passwords do not match";
-    }
+        if (empty($fname)) {
+            $error['create'] = "Enter Firstname";
+        } else if (empty($sname)) {
+            $error['create'] = "Enter Surname";
+        } else if (empty($uname)) { 
+            $error['create'] = "Enter Username";
+        } else if (empty($email)) {
+            $error['create'] = "Enter your email";
+        } else if (empty($phone)) {
+            $error['create'] = "Enter Phone";
+        } else if ($gender == "") {
+            $error['create'] = "Select your Gender";
+        } else if (empty($password)) {
+            $error['create'] = "Enter Password";
+        } else if ($con_pass != $password) {
+            $error['create'] = "Both Passwords do not match";
+        }
 
-    if (count($error) == 0) {
-        $query = "INSERT INTO doctors (firstname, surname, username, email, gender, phone, password, salary, data_reg, status, profile) 
-                  VALUES ('$firstname', '$surname', '$uname', '$email', '$gender', '$phone', '$password', '0', NOW(), 'Pending', 'doctor.jpg')";
+        if(count($error) == 0){
+            $query = "INSERT INTO patient(firstname, surname, username, email, phone, gender, password, date_reg, profile) 
+                      VALUES('$fname', '$sname', '$uname', '$email', '$phone', '$gender', '$password', NOW(), 'patient.jpg')";
+            $res = mysqli_query($connect, $query);
 
-        $result = mysqli_query($connect, $query);
-        if ($result) {
-            echo "<script>alert('You have successfully applied')</script>";
-            header("Location: doctorlogin.php");
-        } else {
-            echo "<script>alert('Application Failed')</script>";
+            if($res){
+                header("Location: patientlogin.php");
+            } else {
+                echo "<script>alert('Failed to create account. Please try again.')</script>";
+            }
         }
     }
-
-    if (isset($error['apply'])) {
-        $s = $error['apply'];
-        $show = "<h5 class='text-center alert alert-danger'>$s</h5>";
-    }
-}
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -56,11 +53,11 @@ if (isset($_POST['apply'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apply Now !!!</title>
+    <title>Create Account</title>
 </head>
-<body style="background-image: url(img/sys.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+<body style="background-image:url(img/sys.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
     <?php
-    include("include/header.php");
+        include("include/header.php");
     ?>
 
     <div class="container-fluid">
@@ -68,13 +65,9 @@ if (isset($_POST['apply'])) {
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 bg-light p-5 rounded shadow my-3">
-                    <h5 class="text-center my-5">Apply Now !!!</h5>
+                    <h5 class="text-center my-5">Create Account</h5>
                     <div>
-                        <?php
-                        if (isset($show)) {
-                            echo $show;
-                        }
-                        ?>
+                     
                     </div>
                     <form method="post">
                         <div class="form-group">
@@ -96,19 +89,21 @@ if (isset($_POST['apply'])) {
                             <label>Email</label>
                             <input type="text" name="email" class="form-control" autocomplete="off" placeholder="Enter Email Address" value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>">
                         </div>
+                        
                         <br>
                         <div class="form-group">
-                            <label>Select Gender</label>
+                            <label>Phone</label>
+                            <input type="number" name="phone" class="form-control" autocomplete="off" placeholder="Enter Phone Number" value="<?php if(isset($_POST['phone'])) echo $_POST['phone']; ?>">
+                        </div>
+                        <br>
+        
+                        <div class="form-group">
+                            <label>Gender</label>
                             <select name="gender" class="form-control">
                                 <option value="">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="number" name="phone" class="form-control" autocomplete="off" placeholder="Enter Phone Number" value="<?php if(isset($_POST['phone'])) echo $_POST['phone']; ?>">
                         </div>
                         <br>
                         <div class="form-group">
@@ -121,8 +116,8 @@ if (isset($_POST['apply'])) {
                             <input type="password" name="con_pass" class="form-control" autocomplete="off">
                         </div>
                         <br>
-                        <input type="submit" name="apply" class="btn btn-success" value="Apply Now">
-                        <p>I already have an account <a href="doctorlogin.php">Click here</a></p>
+                        <input type="submit" name="create" class="btn btn-success" value="Create Account">
+                        <p>I already have an account <a href="patientlogin.php">Click here</a></p>
                     </form>
                 </div>
                 <div class="col-md-3"></div>
