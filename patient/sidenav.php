@@ -43,13 +43,15 @@
 
     </style>
 
+
 <div class="col-md-2 sidenav p-0">
                 <div class="list-group text-center">
                     <a href="index.php" class="list-group-item list-group-item-action">Dashboard</a>
-                    <a href="admin.php" class="list-group-item list-group-item-action">Administrators</a>
                     <a href="profile.php" class="list-group-item list-group-item-action">Profile</a>
-                    <a href="doctor.php" class="list-group-item list-group-item-action">Doctors</a>
-                    <a href="patient.php" class="list-group-item list-group-item-action">Patients</a>
+                    
+                    <a href="appointment.php" class="list-group-item list-group-item-action">Book Appointment</a>
+                    
+                    <a href="invoice.php" class="list-group-item list-group-item-action">Invoice</a>
                 </div>
             </div>
     

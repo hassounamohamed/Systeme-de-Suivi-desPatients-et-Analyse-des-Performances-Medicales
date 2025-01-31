@@ -63,6 +63,65 @@ if (isset($_POST['login'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Log Page</title>
 
+<style>
+
+
+/* Login Box */
+.col-md-6 {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.col-md-6:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+
+/* Input Fields */
+.form-control {
+    border-radius: 30px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+    transform: scale(1.02);
+}
+
+/* Submit Button */
+.btn-success {
+    width: 100%;
+    border-radius: 30px;
+    padding: 12px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Error Message */
+.alert-danger {
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+
 </head>
 <body style="background-image:url('img/sys.jpg'); background-repeat:no-repeat; background-size:cover;">
 
