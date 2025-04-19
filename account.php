@@ -1,49 +1,47 @@
 <?php
-    include("include/connection.php");
+include("include/connection.php");
 
-    if(isset($_POST['create'])){
-        $fname = $_POST['fname'];
-        $sname = $_POST['sname'];
-        $uname = $_POST['uname'];
-        $email = $_POST['email'];
-        $phone = $_POST['phone'];
-        $gender = $_POST['gender'];
-        $password = $_POST['pass'];
-        $con_pass = $_POST['con_pass'];
-        
-        $error = array();
+if(isset($_POST['create'])){
+    $fname = $_POST['fname'];
+    $sname = $_POST['sname'];
+    $uname = $_POST['uname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $password = $_POST['pass'];
+    $con_pass = $_POST['con_pass'];
+    
+    $error = array();
 
-        if (empty($fname)) {
-            $error['create'] = "Enter Firstname";
-        } else if (empty($sname)) {
-            $error['create'] = "Enter Surname";
-        } else if (empty($uname)) { 
-            $error['create'] = "Enter Username";
-        } else if (empty($email)) {
-            $error['create'] = "Enter your email";
-        } else if (empty($phone)) {
-            $error['create'] = "Enter Phone";
-        } else if ($gender == "") {
-            $error['create'] = "Select your Gender";
-        } else if (empty($password)) {
-            $error['create'] = "Enter Password";
-        } else if ($con_pass != $password) {
-            $error['create'] = "Both Passwords do not match";
-        }
+    if (empty($email)) {
+        echo "<script>alert('Enter your email');</script>";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error['create'] = "Invalid email format";
+    } else if (empty($password)) {
+        echo "<script>alert('Enter Password');</script>";
+    } else if (!preg_match('/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $password)) {
+        $error['create'] = "Password must be at least 8 characters with a letter, a number, and a symbol";
+    } else if ($con_pass != $password) {
+        $error['create'] = "Both Passwords do not match";
+    }
 
-        if(count($error) == 0){
-            $query = "INSERT INTO patient(firstname, surname, username, email, phone, gender, password, date_reg, profile) 
-                      VALUES('$fname', '$sname', '$uname', '$email', '$phone', '$gender', '$password', NOW(), 'patient.jpg')";
-            $res = mysqli_query($connect, $query);
+    if(count($error) == 0){
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-            if($res){
-                header("Location: patientlogin.php");
-            } else {
-                echo "<script>alert('Failed to create account. Please try again.')</script>";
-            }
+        $query = "INSERT INTO patient(firstname, surname, username, email, phone, gender, password, date_reg, profile) 
+                  VALUES('$fname', '$sname', '$uname', '$email', '$phone', '$gender', '$hashed_password', NOW(), 'patient.jpg')";
+        $res = mysqli_query($connect, $query);
+
+        if($res){
+            header("Location: patientlogin.php");
+        } else {
+            echo "<script>alert('Failed to create account. Please try again.')</script>";
         }
     }
+}
 ?>
+
+
 
 
 
